@@ -82,8 +82,15 @@ namespace Fungus
 
 		protected virtual void Update()
 		{
+            if (EventSystem.current == null)
+            {
+                return;
+            }
+
             if (currentStandaloneInputModule == null)
+            {
                 currentStandaloneInputModule = EventSystem.current.GetComponent<StandaloneInputModule>();
+            }
 
             if (Input.GetButtonDown(currentStandaloneInputModule.submitButton) ||
                 (cancelEnabled && Input.GetButton(currentStandaloneInputModule.cancelButton)))
