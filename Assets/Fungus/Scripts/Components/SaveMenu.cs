@@ -168,7 +168,7 @@ namespace Fungus
                 var historyText = historyView.GetComponentInChildren<Text>();
                 if (historyText != null)
                 {
-                    historyText.text = FungusManager.Instance.HistoryManager.GetPrettyHistory();
+                    historyText.text = FungusManager.Instance.NarrativeLog.GetPrettyHistory();
                 }
             }
         }
@@ -192,6 +192,11 @@ namespace Fungus
             {
                 saveManager.Save(saveDataKey);
             }
+        }
+
+        protected virtual void OnSaveReset()
+        {
+            var saveManager = FungusManager.Instance.SaveManager;
         }
 
         protected void PlayClickSound()
@@ -305,7 +310,7 @@ namespace Fungus
         public virtual void Restart()
         {
             var saveManager = FungusManager.Instance.SaveManager;
-
+            var narrativeLog = FungusManager.Instance.NarrativeLog;
             if (string.IsNullOrEmpty(saveManager.StartScene))
             {
                 Debug.LogError("No start scene specified");
@@ -316,6 +321,7 @@ namespace Fungus
 
             // Reset the Save History for a new game
             saveManager.ClearHistory();
+            narrativeLog.Clear();
             if (restartDeletesSave)
             {
                 saveManager.Delete(saveDataKey);
