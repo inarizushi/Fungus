@@ -200,7 +200,9 @@ namespace Fungus
             if (saveMenuActive)
             {
                 // Switch menu off
-                LeanTween.value(saveMenuGroup.gameObject, saveMenuGroup.alpha, 0f, 0.2f).setOnUpdate( (t) => {
+                LeanTween.value(saveMenuGroup.gameObject, saveMenuGroup.alpha, 0f, 0.2f)
+                    .setEase(LeanTweenType.easeOutQuint)
+                    .setOnUpdate( (t) => {
                     saveMenuGroup.alpha = t;
                 }).setOnComplete( () => {
                     saveMenuGroup.alpha = 0f;
@@ -209,7 +211,9 @@ namespace Fungus
             else
             {
                 // Switch menu on
-                LeanTween.value(saveMenuGroup.gameObject, saveMenuGroup.alpha, 1f, 0.2f).setOnUpdate( (t) => {
+                LeanTween.value(saveMenuGroup.gameObject, saveMenuGroup.alpha, 1f, 0.2f)
+                    .setEase(LeanTweenType.easeOutQuint)
+                    .setOnUpdate( (t) => {
                     saveMenuGroup.alpha = t;
                 }).setOnComplete( () => {
                     saveMenuGroup.alpha = 1f;
